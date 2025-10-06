@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colin Sorce - Finance Professional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --text: #2c3e50;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f8f9fa;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 4px;
+        }
+
+        .logo:hover {
+            color: var(--secondary);
+        }
+
+        .logo:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a.active {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 1;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn:focus {
+            outline: 3px solid rgba(255, 255, 255, 0.8);
+            outline-offset: 3px;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .page-content.active {
+            display: block;
+            animation: fadeInPage 0.6s ease-in-out forwards;
+        }
+
+        .page-content.fade-out {
+            animation: fadeOutPage 0.4s ease-in-out forwards;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOutPage {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .about-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .about-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .skills-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .skills-header h3 {
+            margin-bottom: 0;
+        }
+
+        .search-toggle {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .search-toggle:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+
+        .search-toggle:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+
+        .skills-search-bar {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin 0.3s ease;
+            margin: 0;
+        }
+
+        .skills-search-bar.active {
+            max-height: 100px;
+            margin-bottom: 1rem;
+        }
+
+        .skills-search-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .skills-search-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .skill-tag.hidden {
+            display: none;
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .education-info h4 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .education-school {
+            background: linear-gradient(90deg, #005030, #F47321);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            font-size: 1.1rem;
+        }
+
+        .education-major {
+            color: #7f8c8d;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-date {
+            color: #7f8c8d;
+            font-size: 1rem;
+            text-align: right;
+        }
+
+        .education-date strong {
+            font-size: 1.1rem;
+        }
+
+        .education-stats {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-box {
+            background: var(--light);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+
+        .stat-box:hover {
+            background: linear-gradient(135deg, #005030, #F47321);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 80, 48, 0.3);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .education-honors {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid transparent;
+            border-image: linear-gradient(180deg, #005030, #F47321) 1;
+        }
+
+        .education-honors h5 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .honor-item {
+            color: #7f8c8d;
+            padding: 0.3rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .honor-item::before {
+            content: '🏆';
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .skill-tag:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Individual skill colors matching brand logos */
+        .skill-excel {
+            background: linear-gradient(135deg, #217346, #33a661);
+            color: white;
+        }
+
+        .skill-powerpoint {
+            background: linear-gradient(135deg, #D24726, #E8784F);
+            color: white;
+        }
+
+        .skill-word {
+            background: linear-gradient(135deg, #2B579A, #3F6EB5);
+            color: white;
+        }
+
+        .skill-outlook {
+            background: linear-gradient(135deg, #0072C6, #0A8CD2);
+            color: white;
+        }
+
+        .skill-modeling {
+            background: linear-gradient(135deg, #0078D4, #50A7EA);
+            color: white;
+        }
+
+        .skill-cpp {
+            background: linear-gradient(135deg, #00599C, #0885C2);
+            color: white;
+        }
+
+        .skill-vba {
+            background: linear-gradient(135deg, #7B61FF, #9B7EFF);
+            color: white;
+        }
+
+        .skill-investment {
+            background: linear-gradient(135deg, #FFB300, #FFC83D);
+            color: #2c3e50;
+        }
+
+        .skill-law {
+            background: linear-gradient(135deg, #5C6BC0, #7986CB);
+            color: white;
+        }
+
+        .skill-facilities {
+            background: linear-gradient(135deg, #FF7043, #FF8A65);
+            color: white;
+        }
+
+        .skill-ai-coding {
+            background: linear-gradient(135deg, #AB47BC, #CE93D8);
+            color: white;
+        }
+
+        .skill-google-workspace {
+            background: linear-gradient(135deg, #4285F4, #5BA1F7);
+            color: white;
+        }
+
+        .skill-excel-functions {
+            background: linear-gradient(135deg, #107C41, #185C37);
+            color: white;
+        }
+
+        .skill-operations {
+            background: linear-gradient(135deg, #FF6F00, #FF8F00);
+            color: white;
+        }
+
+        .skill-billing {
+            background: linear-gradient(135deg, #00897B, #26A69A);
+            color: white;
+        }
+
+        .skill-invoices {
+            background: linear-gradient(135deg, #1E88E5, #42A5F5);
+            color: white;
+        }
+
+        .skill-cost-estimates {
+            background: linear-gradient(135deg, #43A047, #66BB6A);
+            color: white;
+        }
+
+        .skill-tracking {
+            background: linear-gradient(135deg, #FB8C00, #FFA726);
+            color: white;
+        }
+
+        .skill-client-comm {
+            background: linear-gradient(135deg, #8E24AA, #AB47BC);
+            color: white;
+        }
+
+        .skill-project-mgmt {
+            background: linear-gradient(135deg, #3949AB, #5C6BC0);
+            color: white;
+        }
+
+        .skill-records {
+            background: linear-gradient(135deg, #6D4C41, #8D6E63);
+            color: white;
+        }
+
+        .skill-cost-control {
+            background: linear-gradient(135deg, #E53935, #EF5350);
+            color: white;
+        }
+
+        .skill-resource-allocation {
+            background: linear-gradient(135deg, #00ACC1, #26C6DA);
+            color: white;
+        }
+
+        .experience-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--light);
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-icon {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .experience-icon img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .experience-item:hover .experience-icon {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .experience-content {
+            flex: 1;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-title {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .experience-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .experience-company {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s, max-height 0.5s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-card.expanded {
+            transform: translateY(0);
+            cursor: default;
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--secondary), #5dade2);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .project-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+        }
+
+        .project-details.expanded {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+
+        .project-details p {
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .project-details ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .project-details li {
+            margin-bottom: 0.5rem;
+            color: #7f8c8d;
+        }
+
+        .project-skills {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--light);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-skills-label {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .project-skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .project-skill-tag {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .project-skill-tag:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .read-more-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .view-project-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .view-project-btn:hover,
+        .view-project-btn:focus {
+            background: #1a252f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+        }
+
+        .read-more-btn:hover,
+        .read-more-btn:focus {
+            background: #2980b9;
+            transform: translateY(-2px);
+            outline: 2px solid #2980b9;
+            outline-offset: 2px;
+        }
+
+        .read-more-btn:focus {
+            outline: 2px solid #fff;
+        }
+
+        .read-more-btn.expanded {
+            background: var(--dark);
+        }
+
+        .read-more-btn.expanded:hover,
+        .read-more-btn.expanded:focus {
+            background: #2c3e50;
+        }
+
+        .project-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: var(--secondary);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary), var(--primary));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            width: calc(50% - 40px);
+            position: relative;
+            animation: fadeInUp 0.6s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: 40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 40px;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .timeline-content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-icon-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--secondary);
+            z-index: 10;
+        }
+
+        .timeline-year {
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .timeline-content h4 {
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .timeline-content p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .timeline-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Interests Grid */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .interest-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .interest-image {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .interest-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.8rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .interest-item:hover {
+            transform: scale(1.15);
+            z-index: 10;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .interest-item:hover .interest-image {
+            transform: scale(1.1);
+        }
+
+        .interest-item:hover .interest-label {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 1rem;
+        }
+
+        .interests-grid:hover .interest-item:not(:hover) {
+            transform: scale(0.85);
+            opacity: 0.6;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            border: none;
+            font-size: 1.5rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #2980b9;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .back-to-top:focus {
+            outline: 3px solid var(--secondary);
+            outline-offset: 3px;
+        }
+
+        .back-to-top:active {
+            transform: translateY(-2px);
+        }
+
+        /* Skip to main content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            z-index: 9999;
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
+            top: 0;
+            outline: 3px solid white;
+            outline-offset: 2px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            width: 90%;
+            height: 90%;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            flex: 1;
+            overflow: auto;
+            padding: 0;
+            background: #f5f5f5;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #7f8c8d;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .modal-placeholder-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-placeholder h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 200px;
+                text-align: center;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                flex-direction: row !important;
+            }
+
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-header {
+                flex-direction: column;
+            }
+
+            .education-date {
+                text-align: left;
+                margin-top: 0.5rem;
+            }
+        }
+
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="#" class="logo" data-page="home">Colin Sorce</a>
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                <li><a href="#" class="nav-link" data-page="projects">Projects</a></li>
+                <li><a href="#" class="nav-link" id="contact-nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="home" class="page-content active">
+        <section class="hero" role="banner">
+            <h1>Colin Sorce</h1>
+            <p>Finance Professional | Recent Graduate from University of Miami</p>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">Exploring opportunities at the intersection of finance and technology</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" data-page="about" aria-label="Learn more about Colin Sorce">Learn More</a>
+                <a href="#" class="btn btn-secondary" data-page="projects" aria-label="View Colin's projects">View Projects</a>
+            </div>
+        </section>
+
+        <div class="container" id="main-content">
+            
+            <div class="section-header" style="margin-bottom: 2rem;">
+                <h2>Recent Projects</h2>
+                <p>A selection of my latest work in financial analysis and modeling</p>
+            </div>
+
+            <div class="projects-grid" style="margin-bottom: 4rem;">
+                <div class="project-card home-project" data-project="home-1">
+                    <div class="project-header">
+                        <div class="project-icon">📊</div>
+                        <h3>Financial Modeling</h3>
+                    </div>
+                    <div class="project-content">
+                        <h3>Financial Analysis Projects</h3>
+                        <p>Advanced financial models created using Excel and VBA for investment analysis and portfolio optimization.</p>
+                        <div class="project-skills">
+                            <div class="project-skills-label">Skills Used:</div>
+                            <div class="project-skill-tags">
+                                <span class="project-skill-tag skill-excel">Excel</span>
+                                <span class="project-skill-tag skill-vba">VBA</span>
+                                <span class="project-skill-tag skill-modeling">Financial Modeling</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <button class="read-more-btn home-expand-btn" data-project="home-1" aria-expanded="false">Read More</button>
+                            <a href="#" class="btn view-project-btn" data-page="projects">View Project</a>
+                        </div>
+                        <div class="project-details" id="project-details-home-1">
+                            <p><strong>Project Overview:</strong></p>
+                            <p>Developed comprehensive financial models utilizing advanced Excel functions and VBA programming to automate complex calculations and generate actionable insights for investment decisions.</p>
+                            <ul>
+                                <li>Built DCF valuation models with scenario analysis</li>
+                                <li>Created portfolio optimization tools using Modern Portfolio Theory</li>
+                                <li>Automated financial statement analysis with VBA macros</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card home-project" data-project="home-2">
+                    <div class="project-header">
+                        <div class="project-icon">💼</div>
+                        <h3>Business Analysis</h3>
+                    </div>
+                    <div class="project-content">
+                        <h3>Case Studies</h3>
+                        <p>In-depth business and financial case studies analyzing real-world scenarios in corporate finance and investment.</p>
+                        <div class="project-skills">
+                            <div class="project-skills-label">Skills Used:</div>
+                            <div class="project-skill-tags">
+                                <span class="project-skill-tag skill-excel">Excel</span>
+                                <span class="project-skill-tag skill-modeling">Financial Modeling</span>
+                                <span class="project-skill-tag skill-powerpoint">PowerPoint</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <button class="read-more-btn home-expand-btn" data-project="home-2" aria-expanded="false">Read More</button>
+                            <a href="#" class="btn view-project-btn" data-page="projects">View Project</a>
+                        </div>
+                        <div class="project-details" id="project-details-home-2">
+                            <p><strong>Project Overview:</strong></p>
+                            <p>Conducted thorough analysis of corporate finance decisions, mergers and acquisitions, and strategic business initiatives through detailed case study methodology.</p>
+                            <ul>
+                                <li>Analyzed M&A transactions with deal valuation and synergy assessment</li>
+                                <li>Evaluated capital structure decisions and their impact on firm value</li>
+                                <li>Developed strategic recommendations based on financial and operational data</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card home-project" data-project="home-3">
+                    <div class="project-header">
+                        <div class="project-icon">📈</div>
+                        <h3>Market Research</h3>
+                    </div>
+                    <div class="project-content">
+                        <h3>Investment Research</h3>
+                        <p>Research reports on market trends, derivatives, and investment opportunities across various sectors.</p>
+                        <div class="project-skills">
+                            <div class="project-skills-label">Skills Used:</div>
+                            <div class="project-skill-tags">
+                                <span class="project-skill-tag skill-excel">Excel</span>
+                                <span class="project-skill-tag skill-investment">Investment Management</span>
+                                <span class="project-skill-tag skill-cpp">C++</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                            <button class="read-more-btn home-expand-btn" data-project="home-3" aria-expanded="false">Read More</button>
+                            <a href="#" class="btn view-project-btn" data-page="projects">View Project</a>
+                        </div>
+                        <div class="project-details" id="project-details-home-3">
+                            <p><strong>Project Overview:</strong></p>
+                            <p>Performed comprehensive market research and investment analysis across multiple asset classes, with focus on derivatives, equity markets, and emerging investment opportunities.</p>
+                            <ul>
+                                <li>Conducted sector analysis identifying key growth trends and opportunities</li>
+                                <li>Evaluated derivatives strategies for hedging and speculation</li>
+                                <li>Prepared investment recommendations with risk-return profiles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card" style="margin-bottom: 3rem;">
+                <h3 style="text-align: center; font-size: 2rem; margin-bottom: 1rem;">My Journey</h3>
+                <p style="text-align: center; color: #7f8c8d; max-width: 700px; margin: 0 auto 2rem;">
+                    From discovering my passion for finance to building expertise through education and hands-on experience
+                </p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot" role="presentation" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-content-header">
+                                <div class="timeline-icon-wrapper">
+                                    <div class="timeline-icon" role="img" aria-label="Target icon">🎯</div>
+                                </div>
+                                <div class="timeline-year">2020</div>
+                            </div>
+                            <h3>Beginning the Journey</h3>
+                            <h4>Early Career Experience</h4>
+                            <p>Started building professional skills at Park Shore Country Day Camp, learning the value of responsibility, communication, and operational excellence.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot" role="presentation" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-content-header">
+                                <div class="timeline-icon-wrapper">
+                                    <div class="timeline-icon" role="img" aria-label="Graduation cap icon">🎓</div>
+                                </div>
+                                <div class="timeline-year">2021</div>
+                            </div>
+                            <h3>University of Miami</h3>
+                            <h4>Herbert Business School</h4>
+                            <p>Enrolled in the Bachelor of Science in Business Administration program with a focus on Finance and Legal Studies. Awarded Presidential Scholarship for academic excellence.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot" role="presentation" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-content-header">
+                                <div class="timeline-icon-wrapper">
+                                    <div class="timeline-icon" role="img" aria-label="Briefcase icon">💼</div>
+                                </div>
+                                <div class="timeline-year">2023</div>
+                            </div>
+                            <h3>South Shore Installations</h3>
+                            <h4>Financial Operations Intern</h4>
+                            <p>Gained hands-on experience in financial operations, client relations, and business administration. Applied classroom knowledge to real-world financial challenges.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot" role="presentation" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-content-header">
+                                <div class="timeline-icon-wrapper">
+                                    <div class="timeline-icon" role="img" aria-label="Handshake icon">🤝</div>
+                                </div>
+                                <div class="timeline-year">2023</div>
+                            </div>
+                            <h3>Scholars of Finance Association</h3>
+                            <h4>Board Member</h4>
+                            <p>Co-founded and helped establish the association as an official UM club chapter. Organized industry networking events and professional development workshops.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot" role="presentation" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-content-header">
+                                <div class="timeline-icon-wrapper">
+                                    <div class="timeline-icon" role="img" aria-label="Chart icon">📊</div>
+                                </div>
+                                <div class="timeline-year">2024</div>
+                            </div>
+                            <h3>Advanced Coursework</h3>
+                            <h4>Specialized Finance Education</h4>
+                            <p>Completed advanced courses in Financial Modeling, Derivatives, Private Equity, and International Finance. Developed technical proficiency in VBA and C++ programming.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot" role="presentation" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-content-header">
+                                <div class="timeline-icon-wrapper">
+                                    <div class="timeline-icon" role="img" aria-label="Rocket icon">🚀</div>
+                                </div>
+                                <div class="timeline-year">2025</div>
+                            </div>
+                            <h3>Ready for Impact</h3>
+                            <h4>Graduating & Career Launch</h4>
+                            <p>Graduating with a 3.78 Finance GPA and comprehensive experience in financial modeling, operations, and leadership. Excited to bring my skills to a dynamic organization.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-info" id="contact-section">
+                <div class="contact-card">
+                    <div class="contact-icon" role="img" aria-label="Email icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:colinsorce@icloud.com" aria-label="Send email to colinsorce@icloud.com">colinsorce@icloud.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon" role="img" aria-label="Phone icon">📱</div>
+                    <h3>Phone</h3>
+                    <a href="tel:5165101946" aria-label="Call Colin at 516-510-1946">(516) 510-1946</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon" role="img" aria-label="LinkedIn icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/ColinJSorce" target="_blank" rel="noopener noreferrer" aria-label="Visit Colin's LinkedIn profile (opens in new tab)">linkedin.com/in/ColinJSorce</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about" class="page-content">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p>Finance graduate with expertise in financial modeling and business administration</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Education</h3>
+                    
+                    <div class="education-header">
+                        <div class="education-info">
+                            <h4>Bachelor of Science in Business Administration</h4>
+                            <div class="education-school">University of Miami Herbert Business School</div>
+                            <div class="education-major">Double Major: Finance & Legal Studies</div>
+                        </div>
+                        <div class="education-date">
+                            <strong>May 2025</strong><br>
+                            Coral Gables, FL
+                        </div>
+                    </div>
+
+                    <div class="education-stats">
+                        <div class="stat-box">
+                            <div class="stat-label">Finance GPA</div>
+                            <div class="stat-value">3.78</div>
+                        </div>
+                    </div>
+
+                    <div class="education-honors">
+                        <h5>Honors & Recognition</h5>
+                        <div class="honor-item">Presidential Scholarship</div>
+                        <div class="honor-item">National Society of Leadership and Success</div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <h5 style="color: var(--primary); margin-bottom: 0.8rem; font-size: 1rem;">Activities</h5>
+                        <div style="color: #7f8c8d; line-height: 1.8;">
+                            National Business Honor Society • Slavic Club • Canes Finance Association
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem;">
+                        <h5 style="color: var(--primary); margin-bottom: 0.8rem; font-size: 1rem;">Relevant Coursework</h5>
+                        <div style="color: #7f8c8d; line-height: 1.8;">
+                            Financial Modeling • Speculative Markets and Derivatives • Intro to Private Equity and Venture Capital • International Finance • Principles of Risk Management and Insurance • Investment and Security Markets • Corporate Finance • The Law of Financial Transactions • Corporate Law • Fundamentals of Programming • Operations Management
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-card">
+                    <div class="skills-header">
+                        <h3>Technical Skills</h3>
+                        <button class="search-toggle" id="skillsSearchToggle" aria-label="Toggle skills search">🔍</button>
+                    </div>
+                    <div class="skills-search-bar" id="skillsSearchBar">
+                        <input 
+                            type="text" 
+                            class="skills-search-input" 
+                            id="skillsSearchInput" 
+                            placeholder="Search skills..."
+                            aria-label="Search technical skills"
+                        />
+                    </div>
+                    <div class="skill-list" id="skillsList">
+                        <span class="skill-tag skill-excel" data-skill="microsoft excel">Microsoft Excel</span>
+                        <span class="skill-tag skill-excel-functions" data-skill="excel functions">Excel Functions</span>
+                        <span class="skill-tag skill-word" data-skill="microsoft word">Microsoft Word</span>
+                        <span class="skill-tag skill-powerpoint" data-skill="microsoft powerpoint">Microsoft PowerPoint</span>
+                        <span class="skill-tag skill-outlook" data-skill="outlook">Outlook</span>
+                        <span class="skill-tag skill-google-workspace" data-skill="google workspace">Google Workspace</span>
+                        <span class="skill-tag skill-modeling" data-skill="financial modeling">Financial Modeling</span>
+                        <span class="skill-tag skill-cpp" data-skill="c++">C++</span>
+                        <span class="skill-tag skill-vba" data-skill="vba">VBA</span>
+                        <span class="skill-tag skill-investment" data-skill="investment management">Investment Management</span>
+                        <span class="skill-tag skill-law" data-skill="business law">Business Law</span>
+                        <span class="skill-tag skill-operations" data-skill="operations management">Operations Management</span>
+                        <span class="skill-tag skill-facilities" data-skill="facilities operations">Facilities Operations</span>
+                        <span class="skill-tag skill-billing" data-skill="billing management">Billing Management</span>
+                        <span class="skill-tag skill-invoices" data-skill="processing invoices">Processing Invoices</span>
+                        <span class="skill-tag skill-cost-estimates" data-skill="preparing cost estimates">Preparing Cost Estimates</span>
+                        <span class="skill-tag skill-tracking" data-skill="tracking expenses">Tracking Expenses</span>
+                        <span class="skill-tag skill-client-comm" data-skill="client communication">Client Communication</span>
+                        <span class="skill-tag skill-project-mgmt" data-skill="project management">Project Management</span>
+                        <span class="skill-tag skill-records" data-skill="record management">Record Management</span>
+                        <span class="skill-tag skill-cost-control" data-skill="cost control">Cost Control</span>
+                        <span class="skill-tag skill-resource-allocation" data-skill="resource allocation">Resource Allocation</span>
+                        <span class="skill-tag skill-ai-coding" data-skill="coding with ai">Coding with AI</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card" style="margin-top: 2rem;">
+                <h3>Experience</h3>
+                
+                <div class="experience-item">
+                    <div class="experience-icon" role="img" aria-label="Briefcase icon">💼</div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <div class="experience-title">Financial Operations and Client Relations Intern</div>
+                            <div class="experience-date">May 2023 – Present</div>
+                        </div>
+                        <div class="experience-company">South Shore Installations, Huntington Station, NY</div>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Manage billing and invoicing processes by preparing cost estimates, tracking expenses for materials and labor, and ensuring accurate, timely client invoicing</li>
+                            <li>Communicate with clients regarding project costs, material selections, and budget updates, fostering transparency and strong business relationships</li>
+                            <li>Maintain detailed records of orders, deliveries, and inventory to support cost control, efficient resource allocation, and procurement coordination</li>
+                            <li>Collaborate with site and procurement teams to monitor material usage, identify cost-saving opportunities, and organize administrative documentation to streamline operations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-icon" role="img" aria-label="Tools icon">🔧</div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <div class="experience-title">Maintenance Assistant - Seasonal</div>
+                            <div class="experience-date">May 2020 – July 2024</div>
+                        </div>
+                        <div class="experience-company">Park Shore Country Day Camp, Dix Hills, NY</div>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Actively participated in the maintenance of the property and facilities, ensuring the smooth and efficient operation of the camp, thereby enhancing the overall camp experience for attendees and staff</li>
+                            <li>Established and maintained open lines of communication with camp supervisors, enabling effective coordination of camp activities in a safe and organized manner, thereby reducing potential risks</li>
+                            <li>Conducted regular inspections of structures, equipment, and fields, ensuring strict adherence to safety regulations, thereby minimizing potential hazards, and creating a secure environment for all camp activities and participants</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-icon" role="img" aria-label="Handshake icon">🤝</div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <div class="experience-title">Board Member</div>
+                            <div class="experience-date">August 2023 – May 2025</div>
+                        </div>
+                        <div class="experience-company">Scholars of Finance Association, Coral Gables, FL</div>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Participated in the founding and establishment of the association as an official University of Miami Club Chapter</li>
+                            <li>Initiated and coordinated a series of guest lectures by inviting experts from various financial sectors</li>
+                            <li>Participated in and planned interactive workshops and mock interviews to help club members enhance their skills and prepare for job opportunities in the finance industry</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card" style="margin-top: 2rem;">
+                <h3>Interests</h3>
+                <p>When I'm not analyzing financial models or working on projects, you can find me staying active through weightlifting, hitting the slopes for skiing, traveling to new places, exploring national parks and hiking trails, fishing, or following my favorite sports teams.</p>
+                <div class="interests-grid">
+                    <div class="interest-item">
+                        <div class="interest-image" style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>⚽</text></svg>') center/cover;">
+                        </div>
+                        <div class="interest-label">Sports</div>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-image" style="background: linear-gradient(135deg, rgba(46, 204, 113, 0.9), rgba(39, 174, 96, 0.9)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>✈️</text></svg>') center/cover;">
+                        </div>
+                        <div class="interest-label">Travel</div>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-image" style="background: linear-gradient(135deg, rgba(155, 89, 182, 0.9), rgba(142, 68, 173, 0.9)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>⛷️</text></svg>') center/cover;">
+                        </div>
+                        <div class="interest-label">Skiing</div>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-image" style="background: linear-gradient(135deg, rgba(231, 76, 60, 0.9), rgba(192, 57, 43, 0.9)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🏋️</text></svg>') center/cover;">
+                        </div>
+                        <div class="interest-label">Weightlifting</div>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-image" style="background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(26, 188, 156, 0.9)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🏞️</text></svg>') center/cover;">
+                        </div>
+                        <div class="interest-label">National Parks</div>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-image" style="background: linear-gradient(135deg, rgba(72, 133, 94, 0.9), rgba(95, 165, 118, 0.9)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🥾</text></svg>') center/cover;">
+                        </div>
+                        <div class="interest-label">Hiking</div>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-image" style="background: linear-gradient(135deg, rgba(3, 169, 244, 0.9), rgba(2, 136, 209, 0.9)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🎣</text></svg>') center/cover;">
+                        </div>
+                        <div class="interest-label">Fishing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="projects" class="page-content">
+        <div class="container">
+            <div class="section-header">
+                <h2>Projects</h2>
+                <p>Explore my work in finance, modeling, and analysis</p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card" data-project="1">
+                    <div class="project-header">
+                        <div class="project-icon">📊</div>
+                        <h3>Financial Modeling</h3>
+                    </div>
+                    <div class="project-content">
+                        <h3>Financial Analysis Projects</h3>
+                        <p>Advanced financial models created using Excel and VBA for investment analysis and portfolio optimization.</p>
+                        <div class="project-skills">
+                            <div class="project-skills-label">Skills Used:</div>
+                            <div class="project-skill-tags">
+                                <span class="project-skill-tag skill-excel">Excel</span>
+                                <span class="project-skill-tag skill-vba">VBA</span>
+                                <span class="project-skill-tag skill-modeling">Financial Modeling</span>
+                                <span class="project-skill-tag skill-investment">Investment Management</span>
+                            </div>
+                        </div>
+                        <button class="read-more-btn" data-project="1" aria-expanded="false" aria-controls="project-details-1">Read More</button>
+                        <div class="project-details" id="project-details-1">
+                            <p><strong>Project Overview:</strong></p>
+                            <p>Developed comprehensive financial models utilizing advanced Excel functions and VBA programming to automate complex calculations and generate actionable insights for investment decisions.</p>
+                            <ul>
+                                <li>Built DCF valuation models with scenario analysis</li>
+                                <li>Created portfolio optimization tools using Modern Portfolio Theory</li>
+                                <li>Automated financial statement analysis with VBA macros</li>
+                                <li>Designed interactive dashboards for real-time data visualization</li>
+                            </ul>
+                            <a href="#" class="project-link" onclick="openModal('Financial Modeling Project', 'path/to/your-project.pdf', 'pdf'); return false;" style="display: inline-block; margin-top: 1rem;">View Full Project →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-project="2">
+                    <div class="project-header">
+                        <div class="project-icon">💼</div>
+                        <h3>Business Analysis</h3>
+                    </div>
+                    <div class="project-content">
+                        <h3>Case Studies</h3>
+                        <p>In-depth business and financial case studies analyzing real-world scenarios in corporate finance and investment.</p>
+                        <div class="project-skills">
+                            <div class="project-skills-label">Skills Used:</div>
+                            <div class="project-skill-tags">
+                                <span class="project-skill-tag skill-excel">Excel</span>
+                                <span class="project-skill-tag skill-modeling">Financial Modeling</span>
+                                <span class="project-skill-tag skill-powerpoint">PowerPoint</span>
+                                <span class="project-skill-tag skill-law">Business Law</span>
+                            </div>
+                        </div>
+                        <button class="read-more-btn" data-project="2" aria-expanded="false" aria-controls="project-details-2">Read More</button>
+                        <div class="project-details" id="project-details-2">
+                            <p><strong>Project Overview:</strong></p>
+                            <p>Conducted thorough analysis of corporate finance decisions, mergers and acquisitions, and strategic business initiatives through detailed case study methodology.</p>
+                            <ul>
+                                <li>Analyzed M&A transactions with deal valuation and synergy assessment</li>
+                                <li>Evaluated capital structure decisions and their impact on firm value</li>
+                                <li>Assessed risk management strategies for multinational corporations</li>
+                                <li>Developed strategic recommendations based on financial and operational data</li>
+                            </ul>
+                            <a href="#" class="project-link" onclick="openModal('Business Analysis Case Study', 'path/to/your-casestudy.pdf', 'pdf'); return false;" style="display: inline-block; margin-top: 1rem;">View Full Project →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-project="3">
+                    <div class="project-header">
+                        <div class="project-icon">📈</div>
+                        <h3>Market Research</h3>
+                    </div>
+                    <div class="project-content">
+                        <h3>Investment Research</h3>
+                        <p>Research reports on market trends, derivatives, and investment opportunities across various sectors.</p>
+                        <div class="project-skills">
+                            <div class="project-skills-label">Skills Used:</div>
+                            <div class="project-skill-tags">
+                                <span class="project-skill-tag skill-excel">Excel</span>
+                                <span class="project-skill-tag skill-modeling">Financial Modeling</span>
+                                <span class="project-skill-tag skill-investment">Investment Management</span>
+                                <span class="project-skill-tag skill-cpp">C++</span>
+                            </div>
+                        </div>
+                        <button class="read-more-btn" data-project="3" aria-expanded="false" aria-controls="project-details-3">Read More</button>
+                        <div class="project-details" id="project-details-3">
+                            <p><strong>Project Overview:</strong></p>
+                            <p>Performed comprehensive market research and investment analysis across multiple asset classes, with focus on derivatives, equity markets, and emerging investment opportunities.</p>
+                            <ul>
+                                <li>Conducted sector analysis identifying key growth trends and opportunities</li>
+                                <li>Evaluated derivatives strategies for hedging and speculation</li>
+                                <li>Analyzed market microstructure and trading patterns</li>
+                                <li>Prepared investment recommendations with risk-return profiles</li>
+                            </ul>
+                            <a href="#" class="project-link" onclick="openModal('Market Research Report', 'path/to/your-research.pdf', 'pdf'); return false;" style="display: inline-block; margin-top: 1rem;">View Full Project →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-card" style="margin-top: 3rem; text-align: center;">
+                <h3>Want to Learn More?</h3>
+                <p style="margin-bottom: 1.5rem;">Feel free to reach out to discuss my projects or opportunities to collaborate.</p>
+                <a href="mailto:colinsorce@icloud.com" class="btn btn-primary">Get in Touch</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Colin Sorce. All rights reserved.</p>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Project Details</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="modal-placeholder">
+                    <div class="modal-placeholder-icon">📄</div>
+                    <h4>No File Selected</h4>
+                    <p>To display your project files here, update the project links with your PDF, Excel, or image file paths.</p>
+                    <p style="margin-top: 1rem;"><strong>Example:</strong></p>
+                    <code style="background: #e9ecef; padding: 0.5rem 1rem; border-radius: 5px; display: inline-block; margin-top: 0.5rem;">
+                        openModal('My Project', 'path/to/file.pdf', 'pdf')
+                    </code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const navLinks = document.querySelectorAll('.nav-link, [data-page]');
+        const pages = document.querySelectorAll('.page-content');
+
+        function navigateToPage(pageName) {
+            const currentPage = document.querySelector('.page-content.active');
+            const targetPage = document.getElementById(pageName);
+            
+            if (currentPage === targetPage) return;
+
+            if (currentPage) {
+                currentPage.classList.add('fade-out');
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            const activeNavLink = document.querySelector(`.nav-link[data-page="${pageName}"]`);
+            if (activeNavLink) {
+                activeNavLink.classList.add('active');
+            }
+
+            setTimeout(() => {
+                pages.forEach(page => {
+                    page.classList.remove('active', 'fade-out');
+                    page.style.display = 'none';
+                });
+
+                if (targetPage) {
+                    targetPage.style.display = 'block';
+                    void targetPage.offsetWidth;
+                    targetPage.classList.add('active');
+                }
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 400);
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageName = link.getAttribute('data-page');
+                if (pageName) {
+                    navigateToPage(pageName);
+                }
+            });
+        });
+
+        document.getElementById('contact-nav-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const homePage = document.getElementById('home');
+            if (!homePage.classList.contains('active')) {
+                navigateToPage('home');
+            }
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const contactLink = document.getElementById('contact-nav-link');
+            contactLink.classList.add('active');
+            
+            setTimeout(() => {
+                const contactSection = document.getElementById('contact-section');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                
+                setTimeout(() => {
+                    contactLink.classList.remove('active');
+                    const homeNavLink = document.querySelector('.nav-link[data-page="home"]');
+                    if (homeNavLink) {
+                        homeNavLink.classList.add('active');
+                    }
+                }, 800);
+            }, 100);
+        });
+
+        const readMoreBtns = document.querySelectorAll('.read-more-btn:not(.home-expand-btn)');
+        const projectCards = document.querySelectorAll('.project-card:not(.home-project)');
+
+        function toggleProjectCard(projectCard, projectId) {
+            const projectDetails = projectCard.querySelector('.project-details');
+            const btn = projectCard.querySelector('.read-more-btn');
+            const isExpanded = projectDetails.classList.contains('expanded');
+
+            document.querySelectorAll('.project-card:not(.home-project)').forEach(card => {
+                if (card !== projectCard) {
+                    const wasExpanded = card.querySelector('.project-details').classList.contains('expanded');
+                    card.classList.remove('expanded');
+                    card.querySelector('.project-details').classList.remove('expanded');
+                    const otherBtn = card.querySelector('.read-more-btn');
+                    otherBtn.classList.remove('expanded');
+                    otherBtn.textContent = 'Read More';
+                    otherBtn.setAttribute('aria-expanded', 'false');
+                    
+                    if (wasExpanded) {
+                        setTimeout(() => {
+                            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 50);
+                    }
+                }
+            });
+
+            if (isExpanded) {
+                projectDetails.classList.remove('expanded');
+                projectCard.classList.remove('expanded');
+                btn.classList.remove('expanded');
+                btn.textContent = 'Read More';
+                btn.setAttribute('aria-expanded', 'false');
+                
+                setTimeout(() => {
+                    projectCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            } else {
+                projectDetails.classList.add('expanded');
+                projectCard.classList.add('expanded');
+                btn.classList.add('expanded');
+                btn.textContent = 'Read Less';
+                btn.setAttribute('aria-expanded', 'true');
+                
+                setTimeout(() => {
+                    const projectDetailsEl = projectCard.querySelector('.project-details');
+                    const detailsRect = projectDetailsEl.getBoundingClientRect();
+                    const scrollTarget = window.scrollY + detailsRect.bottom - window.innerHeight + 100;
+                    
+                    window.scrollTo({ 
+                        top: scrollTarget, 
+                        behavior: 'smooth' 
+                    });
+                }, 300);
+            }
+        }
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A' || e.target.closest('a') || 
+                    e.target.classList.contains('read-more-btn') ||
+                    e.target.classList.contains('project-skill-tag')) {
+                    return;
+                }
+                
+                const projectId = this.getAttribute('data-project');
+                toggleProjectCard(this, projectId);
+            });
+        });
+
+        readMoreBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const projectId = this.getAttribute('data-project');
+                const projectCard = document.querySelector(`.project-card[data-project="${projectId}"]:not(.home-project)`);
+                toggleProjectCard(projectCard, projectId);
+            });
+        });
+
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        function openModal(title, filePath, fileType) {
+            modalTitle.textContent = title;
+            modalBody.innerHTML = '';
+
+            if (!filePath || filePath.startsWith('path/to/')) {
+                modalBody.innerHTML = `
+                    <div class="modal-placeholder">
+                        <div class="modal-placeholder-icon">📄</div>
+                        <h4>File Not Available</h4>
+                        <p>Replace the placeholder path with your actual file path to display the content.</p>
+                        <p style="margin-top: 1rem;"><strong>Current path:</strong> <code style="background: #e9ecef; padding: 0.3rem 0.6rem; border-radius: 3px;">${filePath}</code></p>
+                    </div>
+                `;
+            } else {
+                if (fileType === 'pdf') {
+                    modalBody.innerHTML = `<iframe src="${filePath}" type="application/pdf"></iframe>`;
+                } else if (fileType === 'excel' || fileType === 'xlsx') {
+                    modalBody.innerHTML = `<iframe src="https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(filePath)}"></iframe>`;
+                } else if (fileType === 'image' || fileType === 'png' || fileType === 'jpg' || fileType === 'jpeg') {
+                    modalBody.innerHTML = `<img src="${filePath}" alt="${title}">`;
+                } else {
+                    modalBody.innerHTML = `
+                        <div class="modal-placeholder">
+                            <div class="modal-placeholder-icon">❓</div>
+                            <h4>Unsupported File Type</h4>
+                            <p>Supported types: PDF, Excel (.xlsx), Images (.png, .jpg)</p>
+                        </div>
+                    `;
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        window.openModal = openModal;
+
+        const homeExpandBtns = document.querySelectorAll('.home-expand-btn');
+        const homeProjectCards = document.querySelectorAll('.home-project');
+
+        homeExpandBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const projectId = this.getAttribute('data-project');
+                const projectCard = document.querySelector(`.home-project[data-project="${projectId}"]`);
+                const projectDetails = projectCard.querySelector('.project-details');
+                const isExpanded = projectDetails.classList.contains('expanded');
+
+                if (isExpanded) {
+                    projectDetails.classList.remove('expanded');
+                    projectCard.classList.remove('expanded');
+                    btn.classList.remove('expanded');
+                    btn.textContent = 'Read More';
+                    btn.setAttribute('aria-expanded', 'false');
+                    
+                    setTimeout(() => {
+                        projectCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                } else {
+                    projectDetails.classList.add('expanded');
+                    projectCard.classList.add('expanded');
+                    btn.classList.add('expanded');
+                    btn.textContent = 'Read Less';
+                    btn.setAttribute('aria-expanded', 'true');
+                    
+                    setTimeout(() => {
+                        const detailsRect = projectDetails.getBoundingClientRect();
+                        const scrollTarget = window.scrollY + detailsRect.bottom - window.innerHeight + 100;
+                        
+                        window.scrollTo({ 
+                            top: scrollTarget, 
+                            behavior: 'smooth' 
+                        });
+                    }, 300);
+                }
+            });
+        });
+
+        const skillsSearchToggle = document.getElementById('skillsSearchToggle');
+        const skillsSearchBar = document.getElementById('skillsSearchBar');
+        const skillsSearchInput = document.getElementById('skillsSearchInput');
+        const skillTags = document.querySelectorAll('#skillsList .skill-tag');
+
+        skillsSearchToggle.addEventListener('click', () => {
+            const isActive = skillsSearchBar.classList.contains('active');
+            
+            if (isActive) {
+                skillsSearchBar.classList.remove('active');
+                skillsSearchInput.value = '';
+                skillTags.forEach(tag => tag.classList.remove('hidden'));
+            } else {
+                skillsSearchBar.classList.add('active');
+                setTimeout(() => skillsSearchInput.focus(), 300);
+            }
+        });
+
+        skillsSearchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            
+            skillTags.forEach(tag => {
+                const skillName = tag.getAttribute('data-skill').toLowerCase();
+                
+                if (skillName.includes(searchTerm)) {
+                    tag.classList.remove('hidden');
+                } else {
+                    tag.classList.add('hidden');
+                }
+            });
+        });
+
+        skillsSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                skillsSearchBar.classList.remove('active');
+                skillsSearchInput.value = '';
+                skillTags.forEach(tag => tag.classList.remove('hidden'));
+                skillsSearchToggle.focus();
+            }
+        });
+    </script>
+</body>
+</html>
